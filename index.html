@@ -1,21 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="style.css">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My GitHub Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>NCSFM Support Ticket Analysis: Infographic (Jan - Jun 2025) - Final Corrected Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 800px;
+        }
+        .top-customer-chart-container {
+            position: relative;
+            width: 100%;
+            height: 500px; /* Taller container for more labels */
+            max-height: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 800px;
+        }
+        .kpi-card {
+            background: linear-gradient(135deg, #00509D, #247BFF);
+        }
+    </style>
 </head>
-<body>
-    <header>
-        Welcome to My GitHub Page
-    </header>
-    <main>
-        <h1>Hello, World!</h1>
-        <p>This is a professional landing page for my GitHub project. Stay tuned for updates and new content.</p>
-    </main>
-    <footer>
-        &copy; 2025 Your Name. All rights reserved.
-    </footer>
+<body class="antialiased text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#00509D] tracking-tight">NCSFM Support Landscape</h1>
+            <p class="text-lg text-gray-600 mt-2">Key Findings & Operational Trends: Jan 1 – Jun 10, 2025</p>
+        </header>
+
+        <main class="space-y-8">
+
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="col-span-1 md:col-span-2 bg-white p-6 rounded-2xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-[#00509D] mb-4">Monthly Ticket Volume by Origin</h2>
+                    <p class="text-gray-600 mb-6">"Services" (NPI, deployments) consistently drive the majority of ticket volume, peaking in January/February before decreasing. "CARE" (operational support) tickets remain a smaller, yet fluctuating, stream of requests, highlighting different demand patterns between new projects and ongoing support.</p>
+                    <div class="chart-container h-[300px] sm:h-[350px]">
+                        <canvas id="monthlyTicketsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-[#00509D] mb-4">Ticket Priority Distribution</h2>
+                    <p class="text-gray-600 mb-6">A significant portion of tickets are high-priority, with 'Blocker' and 'Critical' issues indicating frequent, impactful service disruptions for customers and pointing to underlying platform complexities.</p>
+                    <div class="chart-container h-[250px] sm:h-[300px]">
+                        <canvas id="priorityDistributionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-6 rounded-2xl shadow-lg">
+                 <h2 class="text-2xl font-bold text-[#00509D] mb-4">Geographical Insights: Ticket Volume vs. Fault Rate</h2>
+                 <p class="text-gray-600 mb-6">North America generates the highest ticket volume, likely due to a large user base. However, Europe and the Middle East & Africa exhibit a much higher fault percentage, indicating that issues from these regions are more often genuine product failures rather than user queries.</p>
+                 <div class="chart-container h-[400px]">
+                    <canvas id="marketAnalysisChart"></canvas>
+                </div>
+            </section>
+
+            <section class="bg-white p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#00509D] mb-4">Top 10 Customers by Total Ticket Volume</h2>
+                <p class="text-gray-600 mb-6">T-Mobile entities dominate the ticket volume, with the main USA corporation submitting a significantly higher number of tickets than any other customer. This highlights the T-Mobile account as the primary driver of support workload, followed by other key accounts like AT&T and M1.</p>
+                <div class="top-customer-chart-container">
+                    <canvas id="topCustomersChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="bg-white p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#00509D] mb-4">Analysis of Common Issue Types</h2>
+                <p class="text-gray-600 mb-6">Issues related to software upgrades (66 tickets) remain the top driver of support requests. Problems with Storage/Ceph (34) and Certificate Management (34) are tied as the next most frequent issues, followed closely by Networking (29) and Deployment/Installation (18).</p>
+                <div class="chart-container h-[400px]">
+                    <canvas id="commonIssuesChart"></canvas>
+                </div>
+            </section>
+
+            <section class="bg-white p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#00509D] mb-4">Root Cause of Support Requests by Origin</h2>
+                <p class="text-gray-600 mb-6">While simple "Queries" are a major driver of requests, "Competency/Human Error" is a substantial issue across both CARE (18 cases) and Services (49 cases). Issues with "Other Products/Infrastructure" are also a significant factor, especially for Services, pointing to integration challenges.</p>
+                <div class="chart-container h-[450px]">
+                    <canvas id="rootCauseChart"></canvas>
+                </div>
+            </section>
+
+            <section class="bg-white p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#00509D] mb-4">Deep Dive: Competency-Related Issues</h2>
+                <p class="text-gray-600 mb-6">"Incorrect configuration" is overwhelmingly the largest contributor to competency-related tickets for both CARE and Services teams. This suggests a critical need for more robust, user-friendly configuration guides, validation tools, and targeted training to reduce common human errors during deployment and maintenance.</p>
+                <div class="chart-container h-[400px]">
+                    <canvas id="competencyBreakdownChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="bg-white p-8 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-[#00509D] mb-2">Support Origin Deep Dive</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Analyzing the nature of requests from CARE versus Services reveals critical differences in their support profiles, highlighting distinct challenges and opportunities for improvement in each area.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="p-6 rounded-2xl border">
+                        <h3 class="text-2xl font-bold text-[#00509D] mb-4 text-center">Fault Rate by Origin</h3>
+                        <p class="text-gray-600 mb-6 text-center">CARE tickets have a higher probability of being a genuine "Fault" (14.6%) compared to Services tickets (10.7%), suggesting that operational issues are more likely to be critical system failures.</p>
+                        <div class="chart-container h-[300px]">
+                            <canvas id="faultRateChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-2xl border">
+                        <h3 class="text-2xl font-bold text-[#00509D] mb-4 text-center">Overall R&D Engagement Rate</h3>
+                        <p class="text-gray-600 mb-6 text-center">R&D engagement is higher for CARE tickets (24%) than for Services (20%). This indicates that post-deployment, operational issues are more likely to require deep, specialized expertise from the development team.</p>
+                        <div class="chart-container h-[300px]">
+                            <canvas id="rdInvolvementChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="p-6 rounded-2xl border">
+                        <h3 class="text-2xl font-bold text-[#00509D] mb-4 text-center">R&D Engagement on Support Requests Only</h3>
+                        <p class="text-gray-600 mb-6 text-center">Focusing only on non-fault tickets, R&D engagement is nearly identical for Services (12%) and CARE (11.3%), indicating a consistent need for deep expertise on non-fault escalations across both workstreams.</p>
+                        <div class="chart-container h-[300px]">
+                            <canvas id="rdEngagementSupportOnlyChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-2xl border">
+                        <h3 class="text-2xl font-bold text-[#00509D] mb-4 text-center">R&D Engagement on High-Priority Tickets</h3>
+                        <p class="text-gray-600 mb-6 text-center">For the most severe tickets (Blocker & Critical), R&D engagement for Services (30%) is higher than for CARE (24%), suggesting that high-impact issues during NPI and deployments are more likely to require R&D intervention.</p>
+                        <div class="chart-container h-[300px]">
+                            <canvas id="rdEngagementCriticalChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="pt-8">
+                 <h2 class="text-3xl font-bold text-center text-[#00509D] mb-8">Strategic Recommendations</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-[#00F5D4]">
+                        <h3 class="font-bold text-lg text-[#00509D]">Target Core Issues</h3>
+                        <p class="text-gray-600">Launch dedicated programs to re-engineer and automate certificate management and software upgrade processes, which are recurring themes in ticket data.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-[#00C4FF]">
+                        <h3 class="font-bold text-lg text-[#00509D]">Enhance RCA & Training</h3>
+                        <p class="text-gray-600">Enforce mandatory RCA for all "Faults". Address the high volume of "Competency" errors with targeted user and partner training.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-[#247BFF]">
+                        <h3 class="font-bold text-lg text-[#00509D]">Strengthen NPI Support</h3>
+                        <p class="text-gray-600">Allocate more resources for PRE-CARE and early-life support, and improve knowledge transfer from R&D to frontline teams to reduce escalations.</p>
+                    </div>
+                 </div>
+            </footer>
+        </main>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    Chart.register(ChartDataLabels);
+
+    const energeticPalette = {
+        teal: '#00F5D4',
+        cyan: '#00C4FF',
+        blue: '#247BFF',
+        darkBlue: '#00509D',
+        lightGray: '#F9F9F9',
+        textColor: '#4A5568',
+        white: '#FFFFFF'
+    };
+
+    const wrapLabel = (label, maxLength = 35) => {
+        if (typeof label !== 'string' || label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    };
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        }
+        return label;
+    };
+    
+    const defaultChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: energeticPalette.textColor,
+                    font: { size: 12 }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                },
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleFont: { size: 14 },
+                bodyFont: { size: 12 },
+                padding: 10
+            },
+            datalabels: {
+                display: false
+            }
+        },
+        scales: {
+            x: {
+                ticks: { color: energeticPalette.textColor },
+                grid: { display: false }
+            },
+            y: {
+                ticks: { color: energeticPalette.textColor },
+                grid: { color: '#E2E8F0' }
+            }
+        }
+    };
+
+
+    const monthlyTicketsCtx = document.getElementById('monthlyTicketsChart').getContext('2d');
+    new Chart(monthlyTicketsCtx, {
+        type: 'bar',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June (to 10th)'],
+            datasets: [{
+                label: 'CARE Tickets',
+                data: [19, 11, 22, 12, 23, 7],
+                backgroundColor: energeticPalette.darkBlue,
+            },{
+                label: 'Services Tickets',
+                data: [61, 64, 56, 54, 55, 24],
+                backgroundColor: energeticPalette.cyan,
+            }]
+        },
+        options: defaultChartOptions
+    });
+    
+    const priorityDistributionCtx = document.getElementById('priorityDistributionChart').getContext('2d');
+    new Chart(priorityDistributionCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Blocker', 'Critical', 'Major', 'Minor', 'Unknown'],
+            datasets: [{
+                label: 'Ticket Priority',
+                data: [72, 59, 148, 42, 4], 
+                backgroundColor: [
+                    '#FF4F4F', 
+                    '#FF9F40', 
+                    energeticPalette.blue,
+                    energeticPalette.cyan,
+                    '#CCCCCC'
+                ],
+                borderColor: energeticPalette.lightGray,
+                borderWidth: 4,
+                hoverOffset: 8
+            }]
+        },
+        options: { ...defaultChartOptions, scales: { x: { display: false }, y: { display: false } } }
+    });
+    
+    const marketAnalysisCtx = document.getElementById('marketAnalysisChart').getContext('2d');
+    new Chart(marketAnalysisCtx, {
+        type: 'bar',
+        data: {
+            labels: ['North America', 'Europe', 'APAC & Japan', 'Latin America', 'Middle East & Africa'].map(l => wrapLabel(l, 16)),
+            datasets: [{
+                label: 'Total Tickets',
+                data: [188, 122, 46, 26, 22],
+                backgroundColor: energeticPalette.darkBlue,
+                borderColor: energeticPalette.darkBlue,
+                borderWidth: 1,
+                yAxisID: 'y'
+            }, {
+                label: 'Fault Percentage (%)',
+                data: [9.04, 18.03, 6.52, 7.69, 18.18],
+                backgroundColor: energeticPalette.teal,
+                borderColor: energeticPalette.teal,
+                borderWidth: 1,
+                yAxisID: 'y1'
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            scales: {
+                x: {
+                    ticks: { color: energeticPalette.textColor, maxRotation: 0, minRotation: 0 }
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: { display: true, text: 'Total Tickets', color: energeticPalette.textColor },
+                    ticks: { color: energeticPalette.textColor },
+                    grid: { drawOnChartArea: false }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    title: { display: true, text: 'Fault Percentage (%)', color: energeticPalette.textColor },
+                    ticks: { color: energeticPalette.textColor },
+                    grid: { drawOnChartArea: false }
+                }
+            }
+        }
+    });
+
+    const topCustomersCtx = document.getElementById('topCustomersChart').getContext('2d');
+    new Chart(topCustomersCtx, {
+        type: 'bar',
+        data: {
+            labels: [
+                'T-MOBILE USA, INC.', 'T-MOBILE RESOURCES CORP', 'AT&T CORP', 'M1 LIMITED', 'TELEFONICA IOT & BIG DATA', 'BRITISH TELECOM', 'ALTAN REDES S.A.P.I. DE C.V.', 'VODAFONE QATAR P.Q.S.C.', 'A1 TELEKOM AUSTRIA AG', 'SPTEL PTE LTD.', 'Vivacom Bulgaria EAD'
+            ].map(l => wrapLabel(l, 25)),
+            datasets: [
+                {
+                    label: 'Total Tickets',
+                    data: [105, 32, 23, 18, 14, 14, 13, 10, 9, 9, 9],
+                    backgroundColor: energeticPalette.darkBlue
+                }
+            ]
+        },
+        options: {
+            ...defaultChartOptions,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                datalabels: {
+                    display: true,
+                    anchor: 'center',
+                    align: 'center',
+                    color: energeticPalette.white,
+                    font: {
+                        weight: 'bold'
+                    },
+                    formatter: (value) => value
+                }
+            }
+        }
+    });
+
+    const commonIssuesCtx = document.getElementById('commonIssuesChart').getContext('2d');
+    new Chart(commonIssuesCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Upgrade Issues', 'Certificate Management', 'Storage/Ceph', 'Networking', 'Deployment/Installation', 'Performance'],
+            datasets: [{
+                label: 'Number of Tickets',
+                data: [66, 34, 34, 29, 18, 5],
+                backgroundColor: [
+                    energeticPalette.blue,
+                    energeticPalette.cyan,
+                    energeticPalette.teal,
+                    energeticPalette.darkBlue,
+                    '#6366F1',
+                    '#8B5CF6'
+                ]
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    ticks: {
+                        stepSize: 10
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                datalabels: {
+                    display: true,
+                    anchor: 'center',
+                    align: 'center',
+                    color: energeticPalette.white,
+                    font: {
+                        weight: 'bold'
+                    },
+                    formatter: (value) => value
+                }
+            }
+        }
+    });
+
+
+    const rootCauseCtx = document.getElementById('rootCauseChart').getContext('2d');
+    new Chart(rootCauseCtx, {
+        type: 'bar',
+        data: {
+            labels: [ 'Query', 'Issue with other product/infra', 'Competency/Human Error (All)', 'Insufficient Symptoms'],
+            datasets: [{
+                label: 'CARE',
+                data: [52, 11, 18, 5],
+                backgroundColor: energeticPalette.darkBlue,
+            }, {
+                label: 'Services',
+                data: [85, 47, 49, 21],
+                backgroundColor: energeticPalette.cyan,
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            indexAxis: 'y',
+            scales: {
+                x: { stacked: true, grid: { display: true }, ticks: { color: energeticPalette.textColor } },
+                y: { stacked: true, grid: { display: false }, ticks: { color: energeticPalette.textColor, callback: function(value, index, values) {
+                        let label = this.getLabelForValue(value);
+                        return wrapLabel(label, 16);
+                    }  } }
+            },
+             plugins: {
+                tooltip: {
+                    callbacks: {
+                         title: (tooltipItems) => {
+                            return tooltipItems[0].label;
+                        }
+                    }
+                },
+                legend: {
+                    position: 'top'
+                }
+            }
+        }
+    });
+
+    const competencyBreakdownCtx = document.getElementById('competencyBreakdownChart').getContext('2d');
+    new Chart(competencyBreakdownCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Incorrect Configuration', 'Documentation Not Followed', 'Other Competency'].map(l => wrapLabel(l, 16)),
+            datasets: [{
+                label: 'CARE',
+                data: [14, 4, 0],
+                backgroundColor: energeticPalette.darkBlue,
+            },{
+                label: 'Services',
+                data: [29, 13, 7],
+                backgroundColor: energeticPalette.cyan,
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            plugins: {
+                legend: { position: 'top' }
+            }
+        }
+    });
+
+    const faultRateCtx = document.getElementById('faultRateChart').getContext('2d');
+    new Chart(faultRateCtx, {
+        type: 'bar',
+        data: {
+            labels: ['CARE', 'Services'],
+            datasets: [{
+                label: 'Fault Rate (%)',
+                data: [14.55, 10.74],
+                backgroundColor: [energeticPalette.blue, energeticPalette.teal],
+                barThickness: 60,
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            plugins: { legend: { display: false } },
+            scales: {
+                 y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Fault Rate (%)' },
+                    ticks: {
+                        callback: function(value) { return value + '%' }
+                    }
+                }
+            }
+        }
+    });
+    
+    const rdInvolvementCtx = document.getElementById('rdInvolvementChart').getContext('2d');
+    new Chart(rdInvolvementCtx, {
+        type: 'bar',
+        data: {
+            labels: ['CARE', 'Services'],
+            datasets: [{
+                label: 'Overall R&D Engagement Rate (%)',
+                data: [24, 20],
+                backgroundColor: [energeticPalette.darkBlue, energeticPalette.cyan],
+                barThickness: 60,
+            }]
+        },
+         options: {
+            ...defaultChartOptions,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Engagement Rate (%)' },
+                    ticks: {
+                        callback: function(value) { return value + '%' }
+                    }
+                }
+            }
+        }
+    });
+
+    const rdEngagementSupportOnlyCtx = document.getElementById('rdEngagementSupportOnlyChart').getContext('2d');
+    new Chart(rdEngagementSupportOnlyCtx, {
+        type: 'bar',
+        data: {
+            labels: ['CARE', 'Services'],
+            datasets: [{
+                label: 'R&D Engagement on Support Requests (%)',
+                data: [11.27, 12],
+                backgroundColor: [energeticPalette.darkBlue, energeticPalette.cyan],
+                barThickness: 60,
+            }]
+        },
+         options: {
+            ...defaultChartOptions,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Engagement Rate (%)' },
+                    ticks: {
+                        callback: function(value) { return value + '%' }
+                    }
+                }
+            }
+        }
+    });
+    
+    const rdEngagementCriticalChartCtx = document.getElementById('rdEngagementCriticalChart').getContext('2d');
+    new Chart(rdEngagementCriticalChartCtx, {
+        type: 'bar',
+        data: {
+            labels: ['CARE', 'Services'],
+            datasets: [{
+                label: 'R&D Engagement on Blocker & Critical Tickets (%)',
+                data: [24, 30],
+                backgroundColor: [energeticPalette.darkBlue, energeticPalette.cyan],
+                barThickness: 60,
+            }]
+        },
+         options: {
+            ...defaultChartOptions,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Engagement Rate (%)' },
+                    ticks: {
+                        callback: function(value) { return value + '%' }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
 </body>
 </html>
